@@ -21,39 +21,39 @@ export const getProfile = asyncHandler(async (req: Request, res: Response) => {
 // ─── Update profile ───────────────────────────────────────────────────────────
 export const updateProfile = asyncHandler(async (req: Request, res: Response) => {
   const input = req.body as UpdateProfileInput;
-  const user = await UsersService.updateProfile(req.user._id.toString(), input);
+  const user = await UsersService.updateProfile((req.user as any)._id.toString(), input);
   res.json(ApiResponse.ok('Profile updated', { user }));
 });
 
 // ─── Avatar upload ────────────────────────────────────────────────────────────
 export const uploadAvatar = asyncHandler(async (req: Request, res: Response) => {
   if (!req.file) throw ApiError.badRequest('No image file provided');
-  const user = await UsersService.uploadAvatar(req.user._id.toString(), req.file.buffer);
+  const user = await UsersService.uploadAvatar((req.user as any)._id.toString(), req.file.buffer);
   res.json(ApiResponse.ok('Avatar updated', { user }));
 });
 
 // ─── Banner upload ────────────────────────────────────────────────────────────
 export const uploadBanner = asyncHandler(async (req: Request, res: Response) => {
   if (!req.file) throw ApiError.badRequest('No image file provided');
-  const user = await UsersService.uploadBanner(req.user._id.toString(), req.file.buffer);
+  const user = await UsersService.uploadBanner((req.user as any)._id.toString(), req.file.buffer);
   res.json(ApiResponse.ok('Cover banner updated', { user }));
 });
 
 // ─── Remove avatar ────────────────────────────────────────────────────────────
 export const removeAvatar = asyncHandler(async (req: Request, res: Response) => {
-  const user = await UsersService.removeAvatar(req.user._id.toString());
+  const user = await UsersService.removeAvatar((req.user as any)._id.toString());
   res.json(ApiResponse.ok('Avatar removed', { user }));
 });
 
 // ─── Education ────────────────────────────────────────────────────────────────
 export const addEducation = asyncHandler(async (req: Request, res: Response) => {
-  const user = await UsersService.addEducation(req.user._id.toString(), req.body as EducationInput);
+  const user = await UsersService.addEducation((req.user as any)._id.toString(), req.body as EducationInput);
   res.status(201).json(ApiResponse.created('Education added', { user }));
 });
 
 export const updateEducation = asyncHandler(async (req: Request, res: Response) => {
   const user = await UsersService.updateEducation(
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.params.entryId,
     req.body as EducationInput,
   );
@@ -61,19 +61,19 @@ export const updateEducation = asyncHandler(async (req: Request, res: Response) 
 });
 
 export const deleteEducation = asyncHandler(async (req: Request, res: Response) => {
-  const user = await UsersService.deleteEducation(req.user._id.toString(), req.params.entryId);
+  const user = await UsersService.deleteEducation((req.user as any)._id.toString(), req.params.entryId);
   res.json(ApiResponse.ok('Education entry deleted', { user }));
 });
 
 // ─── Experience ───────────────────────────────────────────────────────────────
 export const addExperience = asyncHandler(async (req: Request, res: Response) => {
-  const user = await UsersService.addExperience(req.user._id.toString(), req.body as ExperienceInput);
+  const user = await UsersService.addExperience((req.user as any)._id.toString(), req.body as ExperienceInput);
   res.status(201).json(ApiResponse.created('Experience added', { user }));
 });
 
 export const updateExperience = asyncHandler(async (req: Request, res: Response) => {
   const user = await UsersService.updateExperience(
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.params.entryId,
     req.body as ExperienceInput,
   );
@@ -81,13 +81,13 @@ export const updateExperience = asyncHandler(async (req: Request, res: Response)
 });
 
 export const deleteExperience = asyncHandler(async (req: Request, res: Response) => {
-  const user = await UsersService.deleteExperience(req.user._id.toString(), req.params.entryId);
+  const user = await UsersService.deleteExperience((req.user as any)._id.toString(), req.params.entryId);
   res.json(ApiResponse.ok('Experience entry deleted', { user }));
 });
 
 // ─── Change password ──────────────────────────────────────────────────────────
 export const changePassword = asyncHandler(async (req: Request, res: Response) => {
-  await UsersService.changePassword(req.user._id.toString(), req.body as ChangePasswordInput);
+  await UsersService.changePassword((req.user as any)._id.toString(), req.body as ChangePasswordInput);
   res.json(ApiResponse.ok('Password changed successfully', null));
 });
 
@@ -125,6 +125,6 @@ export const searchUsers = asyncHandler(async (req: Request, res: Response) => {
 
 // ─── Suggested developers ─────────────────────────────────────────────────────
 export const getSuggested = asyncHandler(async (req: Request, res: Response) => {
-  const users = await UsersService.getSuggested(req.user._id.toString());
+  const users = await UsersService.getSuggested((req.user as any)._id.toString());
   res.json(ApiResponse.ok('Suggested developers', { users }));
 });

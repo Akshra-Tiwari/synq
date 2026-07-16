@@ -37,7 +37,7 @@ export const createProject = asyncHandler(async (req: Request, res: Response) =>
   if (buffers.length > 6) throw ApiError.badRequest('Maximum 6 screenshots');
 
   const project = await ProjectsService.createProject(
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.body as CreateProjectInput,
     buffers,
   );
@@ -50,7 +50,7 @@ export const updateProject = asyncHandler(async (req: Request, res: Response) =>
 
   const project = await ProjectsService.updateProject(
     req.params.projectId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.body as UpdateProjectInput,
     buffers,
   );
@@ -63,7 +63,7 @@ export const deleteScreenshot = asyncHandler(async (req: Request, res: Response)
 
   const project = await ProjectsService.deleteScreenshot(
     req.params.projectId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     screenshotUrl,
   );
   res.json(ApiResponse.ok('Screenshot deleted', { project }));
@@ -72,8 +72,8 @@ export const deleteScreenshot = asyncHandler(async (req: Request, res: Response)
 export const deleteProject = asyncHandler(async (req: Request, res: Response) => {
   await ProjectsService.deleteProject(
     req.params.projectId,
-    req.user._id.toString(),
-    req.user.role,
+    (req.user as any)._id.toString(),
+    (req.user as any).role,
   );
   res.json(ApiResponse.ok('Project deleted', null));
 });
@@ -81,7 +81,7 @@ export const deleteProject = asyncHandler(async (req: Request, res: Response) =>
 export const toggleLike = asyncHandler(async (req: Request, res: Response) => {
   const result = await ProjectsService.toggleLike(
     req.params.projectId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
   );
   res.json(ApiResponse.ok('Like toggled', result));
 });
@@ -89,7 +89,7 @@ export const toggleLike = asyncHandler(async (req: Request, res: Response) => {
 export const toggleSave = asyncHandler(async (req: Request, res: Response) => {
   const result = await ProjectsService.toggleSave(
     req.params.projectId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
   );
   res.json(ApiResponse.ok('Save toggled', result));
 });
@@ -97,7 +97,7 @@ export const toggleSave = asyncHandler(async (req: Request, res: Response) => {
 export const getSavedProjects = asyncHandler(async (req: Request, res: Response) => {
   const { page = '1', limit = '18' } = req.query as Record<string, string>;
   const result = await ProjectsService.getSavedProjects(
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     parseInt(page),
     parseInt(limit),
   );

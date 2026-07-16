@@ -75,7 +75,7 @@ export const logout = asyncHandler(async (req: Request, res: Response) => {
   const refreshTokenValue = req.cookies?.refreshToken || req.body?.refreshToken;
 
   if (req.user && refreshTokenValue) {
-    await AuthService.logout(req.user._id.toString(), refreshTokenValue);
+    await AuthService.logout((req.user as any)._id.toString(), refreshTokenValue);
   }
 
   res.clearCookie('refreshToken', { path: '/' });
@@ -83,7 +83,7 @@ export const logout = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const logoutAll = asyncHandler(async (req: Request, res: Response) => {
-  await AuthService.logoutAll(req.user._id.toString());
+  await AuthService.logoutAll((req.user as any)._id.toString());
   res.clearCookie('refreshToken', { path: '/' });
   res.json(ApiResponse.ok('Logged out of all devices', null));
 });

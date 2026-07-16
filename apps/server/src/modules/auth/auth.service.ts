@@ -173,7 +173,7 @@ export class AuthService {
     await user.save();
 
     // Send welcome email
-    EmailService.sendWelcomeEmail(user.email, user.name, user.username).catch(
+    EmailService.sendWelcomeEmail(user.email, user.name).catch(
       (err) => console.error('Failed to send welcome email:', err),
     );
 

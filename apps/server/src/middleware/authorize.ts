@@ -13,7 +13,7 @@ export const authorize = (...roles: string[]) =>
       return next(ApiError.unauthorized('Authentication required'));
     }
 
-    if (!roles.includes(req.user.role)) {
+    if (!roles.includes((req.user as any).role)) {
       return next(
         ApiError.forbidden(
           `This action requires one of these roles: ${roles.join(', ')}`,
@@ -37,8 +37,8 @@ export const authorizeOwnerOrAdmin = (paramName = 'id') =>
     }
 
     const resourceOwnerId = req.params[paramName];
-    const isOwner = req.user._id.toString() === resourceOwnerId;
-    const isAdmin = req.user.role === 'admin';
+    const isOwner = (req.user as any)._id.toString() === resourceOwnerId;
+    const isAdmin = (req.user as any).role === 'admin';
 
     if (!isOwner && !isAdmin) {
       return next(ApiError.forbidden('You do not have permission to perform this action'));

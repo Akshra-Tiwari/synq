@@ -45,10 +45,12 @@ export class MessagesService {
     // Attach unread count for the requesting user
     return conversations.map((c) => ({
       ...c,
-      unreadCount: (c.unreadCounts as Map<string, number> | Record<string, number>
-      ) instanceof Map
-        ? (c.unreadCounts as Map<string, number>).get(userId) ?? 0
-        : (c.unreadCounts as Record<string, number>)[userId] ?? 0,
+      unreadCount: (() => {
+        const uc = c.unreadCounts as unknown;
+        if (uc instanceof Map) return (uc as Map<string, number>).get(userId) ?? 0;
+        if (uc && typeof uc === 'object') return (uc as Record<string, number>)[userId] ?? 0;
+        return 0;
+      })(),
     }));
   }
 

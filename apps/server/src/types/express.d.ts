@@ -5,7 +5,7 @@ declare global {
     interface Request {
       user?: IUser;
     }
+    // Override Express User to avoid conflict
+    interface User extends IUser {}
   }
 }
-
-export {};

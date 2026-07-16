@@ -9,7 +9,7 @@ import type { CreatePostInput, UpdatePostInput, CreateCommentInput } from './pos
 export const getFeed = asyncHandler(async (req: Request, res: Response) => {
   const { cursor, limit = '20', filter = 'all' } = req.query as Record<string, string>;
   const result = await PostsService.getFeed(
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     cursor,
     Math.min(50, parseInt(limit)),
     filter as 'all' | 'following' | 'trending',
@@ -43,7 +43,7 @@ export const createPost = asyncHandler(async (req: Request, res: Response) => {
 
   if (buffers.length > 4) throw ApiError.badRequest('Maximum 4 images per post');
 
-  const post = await PostsService.createPost(req.user._id.toString(), input, buffers);
+  const post = await PostsService.createPost((req.user as any)._id.toString(), input, buffers);
   res.status(201).json(ApiResponse.created('Post created', { post }));
 });
 
@@ -51,7 +51,7 @@ export const createPost = asyncHandler(async (req: Request, res: Response) => {
 export const updatePost = asyncHandler(async (req: Request, res: Response) => {
   const post = await PostsService.updatePost(
     req.params.postId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.body as UpdatePostInput,
   );
   res.json(ApiResponse.ok('Post updated', { post }));
@@ -61,8 +61,8 @@ export const updatePost = asyncHandler(async (req: Request, res: Response) => {
 export const deletePost = asyncHandler(async (req: Request, res: Response) => {
   await PostsService.deletePost(
     req.params.postId,
-    req.user._id.toString(),
-    req.user.role,
+    (req.user as any)._id.toString(),
+    (req.user as any).role,
   );
   res.json(ApiResponse.ok('Post deleted', null));
 });
@@ -71,7 +71,7 @@ export const deletePost = asyncHandler(async (req: Request, res: Response) => {
 export const toggleLike = asyncHandler(async (req: Request, res: Response) => {
   const result = await PostsService.toggleLike(
     req.params.postId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
   );
   res.json(ApiResponse.ok('Like toggled', result));
 });
@@ -101,7 +101,7 @@ export const getComments = asyncHandler(async (req: Request, res: Response) => {
 export const createComment = asyncHandler(async (req: Request, res: Response) => {
   const comment = await PostsService.createComment(
     req.params.postId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.body as CreateCommentInput,
   );
   res.status(201).json(ApiResponse.created('Comment added', { comment }));
@@ -110,7 +110,7 @@ export const createComment = asyncHandler(async (req: Request, res: Response) =>
 export const updateComment = asyncHandler(async (req: Request, res: Response) => {
   const comment = await PostsService.updateComment(
     req.params.commentId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
     req.body.content,
   );
   res.json(ApiResponse.ok('Comment updated', { comment }));
@@ -119,8 +119,8 @@ export const updateComment = asyncHandler(async (req: Request, res: Response) =>
 export const deleteComment = asyncHandler(async (req: Request, res: Response) => {
   await PostsService.deleteComment(
     req.params.commentId,
-    req.user._id.toString(),
-    req.user.role,
+    (req.user as any)._id.toString(),
+    (req.user as any).role,
   );
   res.json(ApiResponse.ok('Comment deleted', null));
 });
@@ -128,7 +128,7 @@ export const deleteComment = asyncHandler(async (req: Request, res: Response) =>
 export const toggleCommentLike = asyncHandler(async (req: Request, res: Response) => {
   const result = await PostsService.toggleCommentLike(
     req.params.commentId,
-    req.user._id.toString(),
+    (req.user as any)._id.toString(),
   );
   res.json(ApiResponse.ok('Comment like toggled', result));
 });
