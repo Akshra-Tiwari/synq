@@ -1,19 +1,13 @@
 import { Router, Request, Response } from 'express';
-import { SearchService }    from './search.service';
-import { ApiResponse }      from '../../utils/ApiResponse';
-import { asyncHandler }     from '../../utils/asyncHandler';
+import { SearchService }        from './search.service';
+import { asyncHandler }         from '../../utils/asyncHandler';
 import { optionalAuthenticate } from '../../middleware/authenticate';
 
 const router = Router();
 
 // Full search
 router.get('/', optionalAuthenticate, asyncHandler(async (req: Request, res: Response) => {
-  const {
-    q      = '',
-    filter = 'all',
-    page   = '1',
-    limit  = '20',
-  } = req.query as Record<string, string>;
+  const { q = '', filter = 'all', page = '1', limit = '20' } = req.query as Record<string, string>;
 
   const results = await SearchService.search(
     q,
@@ -23,18 +17,18 @@ router.get('/', optionalAuthenticate, asyncHandler(async (req: Request, res: Res
     req.user?._id?.toString(),
   );
 
-  res.json(new ApiResponse(200, 'Search results', { ...results, query: q, filter }));
+  res.json({
+    success: true,
+    message: 'Search results',
+    data: { ...results, query: q, filter },
+  });
 }));
 
 // Autocomplete
 router.get('/autocomplete', asyncHandler(async (req: Request, res: Response) => {
   const { q = '' } = req.query as { q: string };
   const suggestions = await SearchService.autocomplete(q);
-  res.json(ApiResponse.ok('Suggestions', { suggestions }));
+  res.json({ success: true, message: 'Suggestions', data: { suggestions } });
 }));
-
-function ApiResponse(code: number, msg: string, data: unknown) {
-  return { success: code < 400, message: msg, data };
-}
 
 export default router;

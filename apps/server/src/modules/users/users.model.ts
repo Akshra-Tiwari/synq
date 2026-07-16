@@ -65,8 +65,8 @@ export interface IUser extends Document {
   yearsOfExperience?: number;
 
   // Career history
-  education: IEducation[];
-  experience: IExperience[];
+  education: mongoose.Types.DocumentArray<IEducation>;
+  experience: mongoose.Types.DocumentArray<IExperience>;
 
   // Social links
   githubUrl?: string;
@@ -202,15 +202,15 @@ const UserSchema = new Schema<IUser, IUserModel>(
     toJSON: {
       virtuals: true,
       transform: (_doc, ret) => {
-        delete ret.password;
-        delete ret.refreshTokens;
-        delete ret.verificationToken;
-        delete ret.verificationTokenExpiry;
-        delete ret.resetPasswordToken;
-        delete ret.resetPasswordExpiry;
-        delete ret.avatarPublicId;
-        delete ret.coverBannerPublicId;
-        delete ret.__v;
+        ret.password = undefined;
+        ret.refreshTokens = undefined;
+        ret.verificationToken = undefined;
+        ret.verificationTokenExpiry = undefined;
+        ret.resetPasswordToken = undefined;
+        ret.resetPasswordExpiry = undefined;
+        ret.avatarPublicId = undefined;
+        ret.coverBannerPublicId = undefined;
+        ret.__v = undefined;
         return ret;
       },
     },

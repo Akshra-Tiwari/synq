@@ -176,7 +176,7 @@ export class ProjectsService {
     // Apply text field updates
     const fields = ['title', 'description', 'longDescription', 'techStack', 'githubUrl', 'liveUrl', 'status'] as const;
     for (const f of fields) {
-      if (input[f] !== undefined) (project as Record<string, unknown>)[f] = input[f];
+      if (input[f] !== undefined) (project as unknown as Record<string, unknown>)[f] = input[f];
     }
 
     await project.save();
