@@ -1,0 +1,13 @@
+{
+  "name": "synq",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev":        "npm run dev --workspace=apps/server & npm run dev --workspace=apps/web",
+    "dev:server": "npm run dev --workspace=apps/server",
+    "dev:web":    "npm run dev --workspace=apps/web",
+    "build":      "npm run build --workspace=apps/server && npm run build --workspace=apps/web",
+    "install:all":"npm install"
+  },
+  "engines": { "node": ">=20.0.0" }
+}
