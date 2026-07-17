@@ -148,7 +148,7 @@ export default function ConversationPage({ params }: PageProps) {
 
         {/* Input */}
         <ChatInput
-          onSend={sendMessage}
+          onSend={async (content) => { await sendMessage(content); }}
           onTypingStart={startTyping}
           onTypingStop={stopTyping}
         />
