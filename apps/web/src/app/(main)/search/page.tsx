@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams, useRouter }        from 'next/navigation';
 import Link                                  from 'next/link';
@@ -26,7 +28,7 @@ const FILTER_TABS: { value: Filter; label: string }[] = [
   { value: 'projects', label: 'Projects' },
 ];
 
-export default function SearchPage() {
+function SearchContent() {
   const sp     = useSearchParams();
   const router = useRouter();
   const { user } = useAuthStore();
@@ -222,4 +224,15 @@ export default function SearchPage() {
       )}
     </div>
   );
+}
+
+const Loader = () => (
+  <div className="flex justify-center py-20">
+    <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+      style={{ borderColor:'#01796F', borderTopColor:'transparent' }}/>
+  </div>
+);
+
+export default function SearchPage() {
+  return <Suspense fallback={<Loader />}><SearchContent /></Suspense>;
 }

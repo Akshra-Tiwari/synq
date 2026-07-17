@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams }   from 'next/navigation';
 import { useAuthStore }      from '../../../lib/store/auth.store';
@@ -12,7 +14,7 @@ import type { User }         from '../../../lib/api/auth.api';
 
 const SKILL_FILTERS = ['JavaScript', 'TypeScript', 'Python', 'Rust', 'Go', 'React', 'Node.js', 'AWS'];
 
-export default function ExplorePage() {
+function ExploreContent() {
   const { user }  = useAuthStore();
   const sp        = useSearchParams();
 
@@ -236,4 +238,15 @@ export default function ExplorePage() {
       </div>
     </div>
   );
+}
+
+const Loader = () => (
+  <div className="flex justify-center py-20">
+    <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+      style={{ borderColor:'#01796F', borderTopColor:'transparent' }}/>
+  </div>
+);
+
+export default function ExplorePage() {
+  return <Suspense fallback={<Loader />}><ExploreContent /></Suspense>;
 }

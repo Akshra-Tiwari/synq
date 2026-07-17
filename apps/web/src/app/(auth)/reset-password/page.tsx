@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -21,7 +23,7 @@ const schema = z.object({
 });
 type Form = z.infer<typeof schema>;
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const router    = useRouter();
   const sp        = useSearchParams();
   const token     = sp.get('token') ?? '';
@@ -91,5 +93,18 @@ export default function ResetPasswordPage() {
         <Link href="/login" style={{ color:'#01796F' }}>Back to sign in</Link>
       </p>
     </AuthCard>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center" style={{ background:'#0A1A0C' }}>
+        <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+          style={{ borderColor:'#01796F', borderTopColor:'transparent' }}/>
+      </div>
+    }>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }

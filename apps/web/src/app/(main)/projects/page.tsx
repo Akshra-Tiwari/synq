@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useAuthStore }     from '../../../lib/store/auth.store';
@@ -18,7 +20,7 @@ const SORT_TABS = [
 
 const POPULAR_TECH = ['React', 'Next.js', 'TypeScript', 'Python', 'Node.js', 'Rust', 'Go', 'Vue', 'Svelte', 'Flutter'];
 
-export default function ProjectsPage() {
+function ProjectsContent() {
   const { user }  = useAuthStore();
   const router    = useRouter();
   const sp        = useSearchParams();
@@ -248,4 +250,15 @@ export default function ProjectsPage() {
       />
     </div>
   );
+}
+
+const Loader = () => (
+  <div className="flex justify-center py-20">
+    <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+      style={{ borderColor:'#01796F', borderTopColor:'transparent' }}/>
+  </div>
+);
+
+export default function ProjectsPage() {
+  return <Suspense fallback={<Loader />}><ProjectsContent /></Suspense>;
 }
