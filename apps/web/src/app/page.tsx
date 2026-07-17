@@ -72,7 +72,7 @@ export default function LandingPage() {
         <p className="relative text-lg md:text-xl max-w-2xl mb-10 leading-relaxed animate-fade-up"
           style={{ color:'#7A9A7E', animationDelay:'0.1s' }}>
           Showcase your projects, connect with engineers who get it,
-          share what you're building — on a platform built by developers, for developers.
+          share what you&apos;re building — on a platform built by developers, for developers.
         </p>
 
         {/* CTAs */}

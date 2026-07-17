@@ -145,7 +145,7 @@ export function PostComposer({ authorName, authorUsername, authorAvatar, onPost 
                 placeholder={
                   type === 'achievement'       ? "Share a win 🏆 What did you achieve?" :
                   type === 'project-showcase'  ? "Tell us about your project 🚀" :
-                  "What's on your mind? Share code, thoughts, questions…"
+                  "What&apos;s on your mind? Share code, thoughts, questions…"
                 }
                 rows={4}
                 maxLength={3000}

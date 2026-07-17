@@ -17,7 +17,7 @@ export default function NotFound() {
         style={{ color:'rgba(109,129,150,0.15)' }}>404</p>
       <h1 className="relative text-2xl font-semibold mt-2 mb-3" style={{ color:'#94A2AF' }}>Page not found</h1>
       <p className="relative text-sm max-w-sm mb-10 leading-relaxed" style={{ color:'#50606E' }}>
-        The page you're looking for doesn't exist or has been moved.
+        The page you&apos;re looking for doesn&apos;t exist or has been moved.
       </p>
       <div className="relative flex flex-col sm:flex-row items-center gap-3">
         <Link href="/feed"

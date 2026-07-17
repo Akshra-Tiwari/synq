@@ -98,7 +98,7 @@ export default function NotificationsPage() {
           description={
             filter === 'unread'
               ? 'You have no unread notifications.'
-              : 'When someone likes your posts, comments, or connects with you, you'll see it here.'
+              : 'When someone likes your posts, comments, or connects with you, you&apos;ll see it here.'
           }
           icon={
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

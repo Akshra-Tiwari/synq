@@ -273,7 +273,7 @@ export default function OnboardingPage() {
               </svg>
             </div>
             <div>
-              <h2 className="text-2xl font-semibold text-slate-100 tracking-tight">You're all set!</h2>
+              <h2 className="text-2xl font-semibold text-slate-100 tracking-tight">You&apos;re all set!</h2>
               <p className="text-sm text-slate-500 mt-2">
                 Your profile is ready. Connect with developers, share projects, and build your network.
               </p>

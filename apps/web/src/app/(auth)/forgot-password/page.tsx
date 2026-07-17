@@ -50,7 +50,7 @@ export default function ForgotPasswordPage() {
     <AuthCard>
       <div className="mb-7">
         <h1 className="text-2xl font-bold mb-1" style={{ color:'#DCE4EC' }}>Reset password</h1>
-        <p className="text-sm" style={{ color:'#50606E' }}>Enter your email and we'll send a reset link.</p>
+        <p className="text-sm" style={{ color:'#50606E' }}>Enter your email and we&apos;ll send a reset link.</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         <FormError message={error}/>

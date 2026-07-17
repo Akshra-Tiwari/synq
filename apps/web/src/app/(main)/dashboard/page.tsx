@@ -121,7 +121,7 @@ export default function DashboardPage() {
             </div>
             {recentPosts.length === 0 ? (
               <div className="p-8 text-center">
-                <p className="text-sm text-slate-500">You haven't posted yet.</p>
+                <p className="text-sm text-slate-500">You haven&apos;t posted yet.</p>
                 <Link href="/feed" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors mt-1 block">Share something →</Link>
               </div>
             ) : (

@@ -164,7 +164,7 @@ export default function ProfilePage({ params }: PageProps) {
           ) : posts.length === 0 ? (
             <EmptyState
               title="No posts yet"
-              description={isOwn ? 'Share what you're building — projects, ideas, wins.' : `@${username} hasn't posted yet.`}
+              description={isOwn ? 'Share what you&apos;re building — projects, ideas, wins.' : `@${username} hasn&apos;t posted yet.`}
               icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" strokeWidth="1.5"/></svg>}
             />
           ) : (

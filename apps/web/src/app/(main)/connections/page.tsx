@@ -154,7 +154,7 @@ export default function ConnectionsPage() {
           {/* ── Pending received ── */}
           {tab === 'received' && (
             received.length === 0 ? (
-              <EmptyState title="No pending requests" description="You're all caught up." />
+              <EmptyState title="No pending requests" description="You&apos;re all caught up." />
             ) : (
               <div className="space-y-3">
                 {received.map(({ connectionId, user: peer, requestedAt }) => (
@@ -198,7 +198,7 @@ export default function ConnectionsPage() {
           {/* ── Sent requests ── */}
           {tab === 'sent' && (
             sent.length === 0 ? (
-              <EmptyState title="No sent requests" description="You haven't sent any connection requests." />
+              <EmptyState title="No sent requests" description="You haven&apos;t sent any connection requests." />
             ) : (
               <div className="space-y-3">
                 {sent.map(({ connectionId, user: peer, requestedAt }) => (
