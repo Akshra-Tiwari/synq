@@ -76,15 +76,15 @@ function ProjectsContent() {
       {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100 tracking-tight">Projects</h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <h1 className="text-2xl font-semibold text-[#E2EBE4] tracking-tight">Projects</h1>
+          <p className="text-sm text-[#5A7A5E] mt-0.5">
             {total > 0 ? `${total} project${total !== 1 ? 's' : ''} built by developers` : 'What developers are building'}
           </p>
         </div>
         {user && (
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-all shadow-lg shadow-indigo-500/20"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#01796F] hover:bg-[#01796F] text-white text-sm font-medium transition-all shadow-lg shadow-indigo-500/20"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M7 2v10M2 7h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -98,7 +98,7 @@ function ProjectsContent() {
       <div className="flex flex-col sm:flex-row gap-3">
         <form onSubmit={handleSearch} className="flex-1">
           <div className="relative">
-            <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600" width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#3A6A3E]" width="15" height="15" viewBox="0 0 15 15" fill="none">
               <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.3" />
               <path d="M10.5 10.5l3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
@@ -106,12 +106,12 @@ function ProjectsContent() {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search projects by name or description…"
-              className="w-full h-10 bg-white/[0.04] border border-white/[0.07] rounded-xl pl-10 pr-4 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all"
+              className="w-full h-10 bg-[rgba(1,121,111,0.06)] border border-white/[0.07] rounded-xl pl-10 pr-4 text-sm text-[#C8DCC9] placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all"
             />
           </div>
         </form>
 
-        <div className="flex gap-1 p-1 bg-white/[0.03] border border-white/[0.05] rounded-xl">
+        <div className="flex gap-1 p-1 bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)] rounded-xl">
           {SORT_TABS.map(({ value, label }) => (
             <button
               key={value}
@@ -119,8 +119,8 @@ function ProjectsContent() {
               className={cn(
                 'px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
                 sort === value
-                  ? 'bg-white/[0.08] text-slate-200'
-                  : 'text-slate-500 hover:text-slate-300',
+                  ? 'bg-white/[0.08] text-[#C8DCC9]'
+                  : 'text-[#5A7A5E] hover:text-[#9EB5A0]',
               )}
             >
               {label}
@@ -138,22 +138,22 @@ function ProjectsContent() {
             className={cn(
               'px-3 py-1 rounded-full text-xs font-mono transition-all border',
               techFilter === tech
-                ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40'
-                : 'bg-white/[0.03] text-slate-500 border-white/[0.06] hover:text-slate-300 hover:border-white/[0.12]',
+                ? 'bg-[#01796F]/20 text-teal-300 border-indigo-500/40'
+                : 'bg-[rgba(23,37,24,0.8)] text-[#5A7A5E] border-[rgba(1,121,111,0.12)] hover:text-[#9EB5A0] hover:border-white/[0.12]',
             )}
           >
             {tech}
           </button>
         ))}
         {techFilter && !POPULAR_TECH.includes(techFilter) && (
-          <span className="px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
+          <span className="px-3 py-1 rounded-full text-xs font-mono bg-[#01796F]/20 text-teal-300 border border-indigo-500/40">
             {techFilter}
           </span>
         )}
         {techFilter && (
           <button
             onClick={() => setTechFilter('')}
-            className="px-3 py-1 rounded-full text-xs text-slate-600 hover:text-slate-400 transition-colors"
+            className="px-3 py-1 rounded-full text-xs text-[#3A6A3E] hover:text-[#7A9A7E] transition-colors"
           >
             Clear filter ✕
           </button>
@@ -176,7 +176,7 @@ function ProjectsContent() {
           }
           action={user && !search && !techFilter ? (
             <button onClick={() => setModalOpen(true)}
-              className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm transition-colors">
+              className="px-4 py-2 rounded-xl bg-[#01796F] hover:bg-[#01796F] text-white text-sm transition-colors">
               Add your first project
             </button>
           ) : undefined}
@@ -203,7 +203,7 @@ function ProjectsContent() {
           <button
             disabled={page <= 1}
             onClick={() => goPage(page - 1)}
-            className="h-9 px-4 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 disabled:opacity-30 transition-all"
+            className="h-9 px-4 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] disabled:opacity-30 transition-all"
           >
             ← Prev
           </button>
@@ -216,8 +216,8 @@ function ProjectsContent() {
                 className={cn(
                   'h-9 w-9 rounded-xl text-sm font-medium transition-all',
                   p === page
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white/[0.04] border border-white/[0.07] text-slate-400 hover:text-slate-200',
+                    ? 'bg-[#01796F] text-white'
+                    : 'bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-[#7A9A7E] hover:text-[#C8DCC9]',
                 )}
               >
                 {p}
@@ -227,7 +227,7 @@ function ProjectsContent() {
           <button
             disabled={page >= totalPages}
             onClick={() => goPage(page + 1)}
-            className="h-9 px-4 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 disabled:opacity-30 transition-all"
+            className="h-9 px-4 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] disabled:opacity-30 transition-all"
           >
             Next →
           </button>

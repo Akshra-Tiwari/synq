@@ -12,23 +12,31 @@ export function useAuth() {
 
   const login = async (credentials: { email: string; password: string }) => {
     const res = await apiLogin(credentials);
-    localStorage.setItem(TOKEN_KEY, res.data.accessToken);
-    setAuth(res.data.user, res.data.accessToken);
-    router.push('/feed');
+    const { accessToken, user } = res.data;
+    localStorage.setItem(TOKEN_KEY, accessToken);
+    setAuth(user, accessToken);
+    // Use replace + refresh to force navigation
+    router.replace('/feed');
+    router.refresh();
   };
 
-  const register = async (payload: { name: string; username: string; email: string; password: string }) => {
+  const register = async (payload: {
+    name: string; username: string; email: string; password: string;
+  }) => {
     const res = await apiRegister(payload);
-    localStorage.setItem(TOKEN_KEY, res.data.accessToken);
-    setAuth(res.data.user, res.data.accessToken);
-    router.push('/onboarding');
+    const { accessToken, user } = res.data;
+    localStorage.setItem(TOKEN_KEY, accessToken);
+    setAuth(user, accessToken);
+    router.replace('/onboarding');
+    router.refresh();
   };
 
   const logout = async () => {
     try { await apiLogout(); } catch { /* ignore */ }
     localStorage.removeItem(TOKEN_KEY);
     clearAuth();
-    router.push('/login');
+    router.replace('/login');
+    router.refresh();
   };
 
   return { login, register, logout };

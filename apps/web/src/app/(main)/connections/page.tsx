@@ -79,19 +79,19 @@ export default function ConnectionsPage() {
     <div className="max-w-3xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100 tracking-tight">Connections</h1>
-        <p className="text-sm text-slate-500 mt-1">Your professional network on Synq.</p>
+        <h1 className="text-2xl font-semibold text-[#E2EBE4] tracking-tight">Connections</h1>
+        <p className="text-sm text-[#5A7A5E] mt-1">Your professional network on Synq.</p>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1 bg-white/[0.03] border border-white/[0.05] rounded-xl">
+      <div className="flex gap-1 p-1 bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)] rounded-xl">
         {TABS.map(({ id, label, count }) => (
           <button
             key={id}
             onClick={() => setTab(id)}
             className={cn(
               'flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all',
-              tab === id ? 'bg-white/[0.08] text-slate-200' : 'text-slate-500 hover:text-slate-300',
+              tab === id ? 'bg-white/[0.08] text-[#C8DCC9]' : 'text-[#5A7A5E] hover:text-[#9EB5A0]',
             )}
           >
             {label}
@@ -100,9 +100,9 @@ export default function ConnectionsPage() {
                 'text-xs px-1.5 py-0.5 rounded-full',
                 tab === id
                   ? id === 'received'
-                    ? 'bg-indigo-500/20 text-indigo-300'
-                    : 'bg-white/[0.08] text-slate-400'
-                  : 'bg-white/[0.05] text-slate-600',
+                    ? 'bg-[#01796F]/20 text-teal-300'
+                    : 'bg-white/[0.08] text-[#7A9A7E]'
+                  : 'bg-[rgba(1,121,111,0.08)] text-[#3A6A3E]',
               )}>
                 {count}
               </span>
@@ -136,11 +136,11 @@ export default function ConnectionsPage() {
                     {/* Connected since + remove */}
                     <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       {connectedAt && (
-                        <span className="text-xs text-slate-600">{timeAgo(connectedAt)}</span>
+                        <span className="text-xs text-[#3A6A3E]">{timeAgo(connectedAt)}</span>
                       )}
                       <button
                         onClick={() => peer._id && handleRemove(peer._id)}
-                        className="text-xs text-slate-600 hover:text-red-400 transition-colors"
+                        className="text-xs text-[#3A6A3E] hover:text-red-400 transition-colors"
                       >
                         Remove
                       </button>
@@ -159,32 +159,32 @@ export default function ConnectionsPage() {
               <div className="space-y-3">
                 {received.map(({ connectionId, user: peer, requestedAt }) => (
                   <div key={connectionId}
-                    className="flex items-center gap-4 p-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:border-white/[0.10] transition-all">
+                    className="flex items-center gap-4 p-4 bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl hover:border-white/[0.10] transition-all">
                     <Avatar src={peer.avatar} name={peer.name ?? ''} size="md" className="shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-slate-200">{peer.name}</p>
-                      <p className="text-xs text-slate-500">@{peer.username}</p>
+                      <p className="text-sm font-semibold text-[#C8DCC9]">{peer.name}</p>
+                      <p className="text-xs text-[#5A7A5E]">@{peer.username}</p>
                       {peer.skills && peer.skills.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-1.5">
                           {peer.skills.slice(0, 3).map((s) => (
-                            <span key={s} className="px-1.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 text-[10px]">{s}</span>
+                            <span key={s} className="px-1.5 py-0.5 rounded-full bg-[#01796F]/10 text-teal-300 text-[10px]">{s}</span>
                           ))}
                         </div>
                       )}
                       {requestedAt && (
-                        <p className="text-xs text-slate-700 mt-1">{timeAgo(requestedAt)}</p>
+                        <p className="text-xs text-[#2A4A2E] mt-1">{timeAgo(requestedAt)}</p>
                       )}
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       <button
                         onClick={() => peer._id && handleAccept(peer._id)}
-                        className="h-9 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-colors"
+                        className="h-9 px-4 rounded-xl bg-[#01796F] hover:bg-[#01796F] text-white text-sm font-medium transition-colors"
                       >
                         Accept
                       </button>
                       <button
                         onClick={() => peer._id && handleReject(peer._id)}
-                        className="h-9 px-4 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 text-sm transition-all"
+                        className="h-9 px-4 rounded-xl bg-[rgba(1,121,111,0.06)] border border-[rgba(1,121,111,0.15)] text-[#7A9A7E] hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 text-sm transition-all"
                       >
                         Decline
                       </button>
@@ -203,18 +203,18 @@ export default function ConnectionsPage() {
               <div className="space-y-3">
                 {sent.map(({ connectionId, user: peer, requestedAt }) => (
                   <div key={connectionId}
-                    className="flex items-center gap-4 p-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:border-white/[0.10] transition-all">
+                    className="flex items-center gap-4 p-4 bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl hover:border-white/[0.10] transition-all">
                     <Avatar src={peer.avatar} name={peer.name ?? ''} size="md" className="shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-slate-200">{peer.name}</p>
-                      <p className="text-xs text-slate-500">@{peer.username}</p>
+                      <p className="text-sm font-semibold text-[#C8DCC9]">{peer.name}</p>
+                      <p className="text-xs text-[#5A7A5E]">@{peer.username}</p>
                       {requestedAt && (
-                        <p className="text-xs text-slate-700 mt-1">Sent {timeAgo(requestedAt)}</p>
+                        <p className="text-xs text-[#2A4A2E] mt-1">Sent {timeAgo(requestedAt)}</p>
                       )}
                     </div>
                     <button
                       onClick={() => peer._id && handleWithdraw(peer._id)}
-                      className="h-9 px-4 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-red-400 hover:border-red-500/20 text-sm transition-all"
+                      className="h-9 px-4 rounded-xl bg-[rgba(1,121,111,0.06)] border border-[rgba(1,121,111,0.15)] text-[#7A9A7E] hover:text-red-400 hover:border-red-500/20 text-sm transition-all"
                     >
                       Withdraw
                     </button>

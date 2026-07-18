@@ -71,7 +71,7 @@ function SearchContent() {
       {/* Search bar */}
       <form onSubmit={handleSearch}>
         <div className="relative">
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-[#5A7A5E]" width="18" height="18" viewBox="0 0 18 18" fill="none">
             <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M13 13l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
@@ -80,7 +80,7 @@ function SearchContent() {
             onChange={(e) => setInputVal(e.target.value)}
             placeholder="Search developers, posts, projects…"
             autoFocus
-            className="w-full h-12 bg-white/[0.04] border border-white/[0.08] rounded-2xl pl-12 pr-4 text-base text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all"
+            className="w-full h-12 bg-[rgba(1,121,111,0.06)] border border-[rgba(1,121,111,0.15)] rounded-2xl pl-12 pr-4 text-base text-[#C8DCC9] placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all"
           />
           {loading && (
             <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -92,14 +92,14 @@ function SearchContent() {
 
       {/* Filter tabs */}
       {(query || results) && (
-        <div className="flex gap-1 p-1 bg-white/[0.03] border border-white/[0.05] rounded-xl w-fit">
+        <div className="flex gap-1 p-1 bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)] rounded-xl w-fit">
           {FILTER_TABS.map(({ value, label }) => (
             <button key={value} onClick={() => handleFilter(value)}
               className={cn(
                 'px-4 py-1.5 rounded-lg text-sm font-medium transition-all',
                 filter === value
-                  ? 'bg-white/[0.08] text-slate-200'
-                  : 'text-slate-500 hover:text-slate-300',
+                  ? 'bg-white/[0.08] text-[#C8DCC9]'
+                  : 'text-[#5A7A5E] hover:text-[#9EB5A0]',
               )}>
               {label}
             </button>
@@ -110,21 +110,21 @@ function SearchContent() {
       {/* Empty / no query state */}
       {!query && !loading && (
         <div className="py-20 text-center space-y-4">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-slate-600">
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)] flex items-center justify-center">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-[#3A6A3E]">
               <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5"/>
               <path d="M18 18l5.5 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           </div>
-          <p className="text-sm font-medium text-slate-400">Search Synq</p>
-          <p className="text-xs text-slate-600 max-w-sm mx-auto">
+          <p className="text-sm font-medium text-[#7A9A7E]">Search Synq</p>
+          <p className="text-xs text-[#3A6A3E] max-w-sm mx-auto">
             Find developers by name, skill, or username. Search posts by content or tags. Discover projects by tech stack.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2">
             {['React', 'TypeScript', 'Rust', 'open source', 'hiring'].map((term) => (
               <button key={term}
                 onClick={() => { setInputVal(term); setQuery(term); }}
-                className="px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.07] text-xs text-slate-500 hover:text-slate-300 hover:border-white/[0.12] transition-all">
+                className="px-3 py-1.5 rounded-full bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-xs text-[#5A7A5E] hover:text-[#9EB5A0] hover:border-white/[0.12] transition-all">
                 {term}
               </button>
             ))}
@@ -146,11 +146,11 @@ function SearchContent() {
             {(filter === 'all' || filter === 'users') && (results?.users?.length ?? 0) > 0 && (
               <section>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
-                    Developers <span className="text-slate-600 font-normal normal-case">({results!.users.length})</span>
+                  <h2 className="text-sm font-semibold text-[#7A9A7E] uppercase tracking-wider">
+                    Developers <span className="text-[#3A6A3E] font-normal normal-case">({results!.users.length})</span>
                   </h2>
                   {filter === 'all' && results!.users.length >= 4 && (
-                    <button onClick={() => handleFilter('users')} className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+                    <button onClick={() => handleFilter('users')} className="text-xs text-teal-400 hover:text-teal-300 transition-colors">
                       See all →
                     </button>
                   )}
@@ -167,11 +167,11 @@ function SearchContent() {
             {(filter === 'all' || filter === 'posts') && (results?.posts?.length ?? 0) > 0 && (
               <section>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
-                    Posts <span className="text-slate-600 font-normal normal-case">({results!.posts.length})</span>
+                  <h2 className="text-sm font-semibold text-[#7A9A7E] uppercase tracking-wider">
+                    Posts <span className="text-[#3A6A3E] font-normal normal-case">({results!.posts.length})</span>
                   </h2>
                   {filter === 'all' && results!.posts.length >= 3 && (
-                    <button onClick={() => handleFilter('posts')} className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+                    <button onClick={() => handleFilter('posts')} className="text-xs text-teal-400 hover:text-teal-300 transition-colors">
                       See all →
                     </button>
                   )}
@@ -197,11 +197,11 @@ function SearchContent() {
             {(filter === 'all' || filter === 'projects') && (results?.projects?.length ?? 0) > 0 && (
               <section>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
-                    Projects <span className="text-slate-600 font-normal normal-case">({results!.projects.length})</span>
+                  <h2 className="text-sm font-semibold text-[#7A9A7E] uppercase tracking-wider">
+                    Projects <span className="text-[#3A6A3E] font-normal normal-case">({results!.projects.length})</span>
                   </h2>
                   {filter === 'all' && results!.projects.length >= 3 && (
-                    <button onClick={() => handleFilter('projects')} className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+                    <button onClick={() => handleFilter('projects')} className="text-xs text-teal-400 hover:text-teal-300 transition-colors">
                       See all →
                     </button>
                   )}

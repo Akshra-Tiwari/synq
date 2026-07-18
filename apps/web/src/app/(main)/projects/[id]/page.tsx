@@ -18,7 +18,7 @@ import type { Project }  from '../../../../lib/api/projects.api';
 const STATUS_COLORS = {
   'in-progress': 'text-amber-300 bg-amber-500/10 border-amber-500/20',
   'completed':   'text-emerald-300 bg-emerald-500/10 border-emerald-500/20',
-  'archived':    'text-slate-400 bg-slate-500/10 border-slate-500/20',
+  'archived':    'text-[#7A9A7E] bg-slate-500/10 border-slate-500/20',
 };
 
 interface PageProps {
@@ -94,7 +94,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
     <div className="max-w-4xl mx-auto space-y-6">
 
       {/* Back */}
-      <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-300 transition-colors">
+      <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm text-[#5A7A5E] hover:text-[#9EB5A0] transition-colors">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M9 3L5 7l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -168,7 +168,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             </div>
           ) : (
             <div className="aspect-video rounded-2xl bg-gradient-to-br from-indigo-900/30 to-slate-900/60 flex items-center justify-center">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-slate-700">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-[#2A4A2E]">
                 <rect x="6" y="6" width="36" height="36" rx="6" stroke="currentColor" strokeWidth="1.5"/>
                 <path d="M6 32l12-14 10 12 7-8 13 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <circle cx="18" cy="18" r="4" stroke="currentColor" strokeWidth="1.5"/>
@@ -178,9 +178,9 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
           {/* Long description */}
           {project.longDescription && (
-            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
-              <h2 className="text-sm font-semibold text-slate-300 mb-3">About this project</h2>
-              <p className="text-sm text-slate-400 leading-relaxed whitespace-pre-wrap">
+            <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
+              <h2 className="text-sm font-semibold text-[#9EB5A0] mb-3">About this project</h2>
+              <p className="text-sm text-[#7A9A7E] leading-relaxed whitespace-pre-wrap">
                 {project.longDescription}
               </p>
             </div>
@@ -190,35 +190,35 @@ export default function ProjectDetailPage({ params }: PageProps) {
         {/* ── Right: project info ── */}
         <div className="space-y-4">
           {/* Main info card */}
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 space-y-4">
+          <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5 space-y-4">
             {/* Status + title */}
             <div>
               <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border mb-2', STATUS_COLORS[project.status])}>
                 {project.status.replace('-', ' ')}
               </span>
-              <h1 className="text-lg font-semibold text-slate-100 leading-snug">{project.title}</h1>
-              <p className="text-sm text-slate-500 mt-1 leading-relaxed">{project.description}</p>
+              <h1 className="text-lg font-semibold text-[#E2EBE4] leading-snug">{project.title}</h1>
+              <p className="text-sm text-[#5A7A5E] mt-1 leading-relaxed">{project.description}</p>
             </div>
 
             {/* Stats */}
-            <div className="flex items-center gap-4 py-3 border-y border-white/[0.05]">
+            <div className="flex items-center gap-4 py-3 border-y border-[rgba(1,121,111,0.1)]">
               <div className="text-center">
-                <p className="text-base font-semibold text-slate-200">{compactNumber(project.viewsCount)}</p>
-                <p className="text-xs text-slate-600">Views</p>
+                <p className="text-base font-semibold text-[#C8DCC9]">{compactNumber(project.viewsCount)}</p>
+                <p className="text-xs text-[#3A6A3E]">Views</p>
               </div>
-              <div className="w-px h-8 bg-white/[0.06]" />
+              <div className="w-px h-8 bg-[rgba(1,121,111,0.08)]" />
               <div className="text-center">
-                <p className="text-base font-semibold text-slate-200">{compactNumber(project.likesCount)}</p>
-                <p className="text-xs text-slate-600">Likes</p>
+                <p className="text-base font-semibold text-[#C8DCC9]">{compactNumber(project.likesCount)}</p>
+                <p className="text-xs text-[#3A6A3E]">Likes</p>
               </div>
-              <div className="w-px h-8 bg-white/[0.06]" />
+              <div className="w-px h-8 bg-[rgba(1,121,111,0.08)]" />
               <div className="text-center">
-                <p className="text-base font-semibold text-slate-200">{compactNumber(project.savesCount)}</p>
-                <p className="text-xs text-slate-600">Saved</p>
+                <p className="text-base font-semibold text-[#C8DCC9]">{compactNumber(project.savesCount)}</p>
+                <p className="text-xs text-[#3A6A3E]">Saved</p>
               </div>
-              <div className="w-px h-8 bg-white/[0.06]" />
+              <div className="w-px h-8 bg-[rgba(1,121,111,0.08)]" />
               <div className="text-center">
-                <p className="text-xs text-slate-600">{timeAgo(project.createdAt)}</p>
+                <p className="text-xs text-[#3A6A3E]">{timeAgo(project.createdAt)}</p>
               </div>
             </div>
 
@@ -231,7 +231,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
                   'flex-1 flex items-center justify-center gap-2 h-10 rounded-xl text-sm font-medium transition-all',
                   project.isLiked
                     ? 'bg-pink-500/15 text-pink-300 border border-pink-500/25 hover:bg-pink-500/25'
-                    : 'bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-slate-200 hover:bg-white/[0.07]',
+                    : 'bg-[rgba(1,121,111,0.06)] border border-[rgba(1,121,111,0.15)] text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-white/[0.07]',
                   (!user || liking) && 'opacity-60 cursor-default',
                 )}
               >
@@ -251,7 +251,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
                   'flex-1 flex items-center justify-center gap-2 h-10 rounded-xl text-sm font-medium transition-all',
                   project.isSaved
                     ? 'bg-amber-500/15 text-amber-300 border border-amber-500/25 hover:bg-amber-500/25'
-                    : 'bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-slate-200 hover:bg-white/[0.07]',
+                    : 'bg-[rgba(1,121,111,0.06)] border border-[rgba(1,121,111,0.15)] text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-white/[0.07]',
                   (!user || saving) && 'opacity-60 cursor-default',
                 )}
               >
@@ -268,7 +268,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             <div className="flex flex-col gap-2">
               {project.githubUrl && (
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 h-10 px-4 rounded-xl bg-white/[0.03] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 hover:bg-white/[0.06] transition-all">
+                  className="flex items-center gap-2.5 h-10 px-4 rounded-xl bg-[rgba(23,37,24,0.8)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-[rgba(1,121,111,0.08)] transition-all">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 .5a7.5 7.5 0 00-2.37 14.617c.375.07.51-.162.51-.36V13.2c-2.085.453-2.524-1-2.524-1-.342-.867-.835-1.098-.835-1.098-.682-.466.052-.457.052-.457.754.053 1.15.774 1.15.774.67 1.147 1.757.816 2.186.624.068-.485.262-.816.477-1.003-1.668-.19-3.42-.834-3.42-3.713 0-.82.293-1.49.774-2.016-.078-.19-.336-.953.073-1.987 0 0 .63-.202 2.065.77A7.19 7.19 0 018 5.018a7.19 7.19 0 011.879.253c1.433-.972 2.062-.77 2.062-.77.41 1.034.152 1.797.074 1.987.482.525.773 1.195.773 2.016 0 2.887-1.754 3.52-3.424 3.706.27.233.51.692.51 1.394v2.065c0 .2.133.433.514.36A7.5 7.5 0 008 .5z"/>
                   </svg>
@@ -280,7 +280,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
               )}
               {project.liveUrl && (
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 h-10 px-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-sm text-indigo-300 hover:bg-indigo-500/20 transition-all">
+                  className="flex items-center gap-2.5 h-10 px-4 rounded-xl bg-[#01796F]/10 border border-indigo-500/20 text-sm text-teal-300 hover:bg-[#01796F]/20 transition-all">
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
                     <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" strokeWidth="1.3"/>
                     <path d="M7.5 1C6 3.5 6 11.5 7.5 14M7.5 1C9 3.5 9 11.5 7.5 14M1 7.5h13" stroke="currentColor" strokeWidth="1.3"/>
@@ -296,8 +296,8 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
           {/* Tech stack */}
           {project.techStack.length > 0 && (
-            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-4">
-              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Tech Stack</p>
+            <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-4">
+              <p className="text-xs font-semibold text-[#5A7A5E] uppercase tracking-wider mb-3">Tech Stack</p>
               <div className="flex flex-wrap gap-1.5">
                 {project.techStack.map((t) => <TechBadge key={t} tech={t} />)}
               </div>
@@ -305,19 +305,19 @@ export default function ProjectDetailPage({ params }: PageProps) {
           )}
 
           {/* Owner */}
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-4">
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Built by</p>
+          <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-4">
+            <p className="text-xs font-semibold text-[#5A7A5E] uppercase tracking-wider mb-3">Built by</p>
             <Link href={`/${project.owner.username}`} className="flex items-center gap-3 hover:opacity-90 transition-opacity">
               <Avatar src={project.owner.avatar} name={project.owner.name} size="md" />
               <div>
-                <p className="text-sm font-semibold text-slate-200">{project.owner.name}</p>
-                <p className="text-xs text-slate-500">@{project.owner.username}</p>
+                <p className="text-sm font-semibold text-[#C8DCC9]">{project.owner.name}</p>
+                <p className="text-xs text-[#5A7A5E]">@{project.owner.username}</p>
               </div>
             </Link>
             {project.owner.skills?.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {project.owner.skills.slice(0, 4).map((s) => (
-                  <span key={s} className="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs">
+                  <span key={s} className="px-2 py-0.5 rounded-full bg-[#01796F]/10 border border-indigo-500/20 text-teal-300 text-xs">
                     {s}
                   </span>
                 ))}
@@ -329,7 +329,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
           {isOwn && (
             <div className="flex gap-2">
               <button onClick={() => setEditOpen(true)}
-                className="flex-1 h-9 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 hover:bg-white/[0.07] transition-all">
+                className="flex-1 h-9 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-white/[0.07] transition-all">
                 Edit project
               </button>
               <button onClick={handleDelete}

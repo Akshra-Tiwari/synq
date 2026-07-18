@@ -49,10 +49,10 @@ export default function DashboardPage() {
       <div className="flex items-center gap-4">
         <Avatar src={user.avatar} name={user.name} size="lg" />
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100 tracking-tight">
+          <h1 className="text-2xl font-semibold text-[#E2EBE4] tracking-tight">
             Welcome back, {user.name.split(' ')[0]} 👋
           </h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <p className="text-sm text-[#5A7A5E] mt-0.5">
             @{user.username} · {AVAILABILITY_LABELS[user.availability] ?? 'Not available'}
           </p>
         </div>
@@ -82,18 +82,18 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           {/* Profile completion */}
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
+          <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-sm font-semibold text-slate-200">Profile completion</h2>
-                <p className="text-xs text-slate-500 mt-0.5">{completionLabel(completion)} · {completion}% complete</p>
+                <h2 className="text-sm font-semibold text-[#C8DCC9]">Profile completion</h2>
+                <p className="text-xs text-[#5A7A5E] mt-0.5">{completionLabel(completion)} · {completion}% complete</p>
               </div>
-              <Link href={`/${user.username}`} className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+              <Link href={`/${user.username}`} className="text-xs text-teal-400 hover:text-teal-300 transition-colors">
                 View profile →
               </Link>
             </div>
-            <div className="h-2 bg-white/[0.05] rounded-full overflow-hidden mb-5">
-              <div className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-all duration-700" style={{ width: `${completion}%` }}/>
+            <div className="h-2 bg-[rgba(1,121,111,0.08)] rounded-full overflow-hidden mb-5">
+              <div className="h-full bg-gradient-to-r from-[#01796F] to-[#00c4b4] rounded-full transition-all duration-700" style={{ width: `${completion}%` }}/>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {completionSteps.map(({ label, done, href }) => (
@@ -101,7 +101,7 @@ export default function DashboardPage() {
                   className={cn('flex items-center gap-2 px-3 py-2 rounded-xl text-xs transition-all',
                     done
                       ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 pointer-events-none'
-                      : 'bg-white/[0.03] border border-white/[0.06] text-slate-500 hover:text-slate-300 hover:bg-white/[0.05]')}>
+                      : 'bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.12)] text-[#5A7A5E] hover:text-[#9EB5A0] hover:bg-[rgba(1,121,111,0.08)]')}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     {done
                       ? <><circle cx="6" cy="6" r="5" fill="currentColor" fillOpacity="0.2"/><path d="M3.5 6l2 2 3-3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></>
@@ -114,22 +114,22 @@ export default function DashboardPage() {
           </div>
 
           {/* Recent posts */}
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden">
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.05]">
-              <h2 className="text-sm font-semibold text-slate-200">Recent posts</h2>
-              <Link href="/feed" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">View feed →</Link>
+          <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl overflow-hidden">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[rgba(1,121,111,0.1)]">
+              <h2 className="text-sm font-semibold text-[#C8DCC9]">Recent posts</h2>
+              <Link href="/feed" className="text-xs text-teal-400 hover:text-teal-300 transition-colors">View feed →</Link>
             </div>
             {recentPosts.length === 0 ? (
               <div className="p-8 text-center">
-                <p className="text-sm text-slate-500">You haven&apos;t posted yet.</p>
-                <Link href="/feed" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors mt-1 block">Share something →</Link>
+                <p className="text-sm text-[#5A7A5E]">You haven&apos;t posted yet.</p>
+                <Link href="/feed" className="text-xs text-teal-400 hover:text-teal-300 transition-colors mt-1 block">Share something →</Link>
               </div>
             ) : (
               <div className="divide-y divide-white/[0.04]">
                 {recentPosts.map((post) => (
-                  <div key={post._id} className="px-5 py-3.5 hover:bg-white/[0.02] transition-colors">
-                    <p className="text-sm text-slate-400 line-clamp-2 mb-2">{post.content}</p>
-                    <div className="flex items-center gap-4 text-xs text-slate-600">
+                  <div key={post._id} className="px-5 py-3.5 hover:bg-[rgba(23,37,24,0.7)] transition-colors">
+                    <p className="text-sm text-[#7A9A7E] line-clamp-2 mb-2">{post.content}</p>
+                    <div className="flex items-center gap-4 text-xs text-[#3A6A3E]">
                       <span>{post.likesCount} likes</span>
                       <span>{post.commentsCount} comments</span>
                     </div>
@@ -142,8 +142,8 @@ export default function DashboardPage() {
 
         <div className="space-y-5">
           {/* Quick actions */}
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
-            <h2 className="text-sm font-semibold text-slate-200 mb-4">Quick actions</h2>
+          <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
+            <h2 className="text-sm font-semibold text-[#C8DCC9] mb-4">Quick actions</h2>
             <div className="space-y-2">
               {[
                 { href: '/feed',        label: 'Write a post',        icon: '✏️' },
@@ -153,10 +153,10 @@ export default function DashboardPage() {
                 { href: '/settings',    label: 'Edit profile',        icon: '⚙️' },
               ].map(({ href, label, icon }) => (
                 <Link key={href} href={href}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-400 hover:text-slate-200 hover:bg-white/[0.04] transition-all">
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-[rgba(1,121,111,0.06)] transition-all">
                   <span className="text-base">{icon}</span>
                   {label}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="ml-auto text-slate-700">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="ml-auto text-[#2A4A2E]">
                     <path d="M4 3l4 3-4 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </Link>
@@ -166,15 +166,15 @@ export default function DashboardPage() {
 
           {/* Suggestions */}
           {suggestions.length > 0 && (
-            <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden">
-              <div className="px-5 py-4 border-b border-white/[0.05]">
-                <h2 className="text-sm font-semibold text-slate-200">People you may know</h2>
+            <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl overflow-hidden">
+              <div className="px-5 py-4 border-b border-[rgba(1,121,111,0.1)]">
+                <h2 className="text-sm font-semibold text-[#C8DCC9]">People you may know</h2>
               </div>
               <div className="p-3 space-y-2">
                 {suggestions.map((u) => (
                   <ConnectionCard key={u._id} user={u} currentUserId={user._id} variant="compact"/>
                 ))}
-                <Link href="/explore" className="block text-center py-2 text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+                <Link href="/explore" className="block text-center py-2 text-xs text-teal-400 hover:text-teal-300 transition-colors">
                   See more developers →
                 </Link>
               </div>

@@ -18,15 +18,15 @@ export default function AdminPage() {
   }, []);
 
   if (loading) return <div className="flex justify-center py-20"><Spinner size="lg" /></div>;
-  if (!data)   return <p className="text-slate-500 text-sm">Failed to load analytics.</p>;
+  if (!data)   return <p className="text-[#5A7A5E] text-sm">Failed to load analytics.</p>;
 
   const { overview, topSkills, topTech, signupTrend, postTrend, topPosters, availabilityDist } = data;
 
   return (
     <div className="space-y-8 max-w-6xl">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100 tracking-tight">Platform Overview</h1>
-        <p className="text-sm text-slate-500 mt-1">Real-time metrics across all Synq activity.</p>
+        <h1 className="text-2xl font-semibold text-[#E2EBE4] tracking-tight">Platform Overview</h1>
+        <p className="text-sm text-[#5A7A5E] mt-1">Real-time metrics across all Synq activity.</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -45,24 +45,24 @@ export default function AdminPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
+        <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
           <div className="flex items-center justify-between mb-4">
-            <div><h3 className="text-sm font-semibold text-slate-200">New users</h3><p className="text-xs text-slate-500">Last 14 days</p></div>
-            <div className="text-right"><p className="text-xl font-bold text-slate-100">{overview.newUsersThisWeek}</p><p className="text-xs text-slate-600">this week</p></div>
+            <div><h3 className="text-sm font-semibold text-[#C8DCC9]">New users</h3><p className="text-xs text-[#5A7A5E]">Last 14 days</p></div>
+            <div className="text-right"><p className="text-xl font-bold text-[#E2EBE4]">{overview.newUsersThisWeek}</p><p className="text-xs text-[#3A6A3E]">this week</p></div>
           </div>
           <Sparkline data={signupTrend.map((d) => d.count)} color="#6366f1" width={340} height={60}/>
-          <div className="flex items-center justify-between mt-2 text-[10px] text-slate-700">
+          <div className="flex items-center justify-between mt-2 text-[10px] text-[#2A4A2E]">
             <span>{signupTrend[0]?.date?.slice(5) ?? ''}</span>
             <span>{signupTrend[signupTrend.length - 1]?.date?.slice(5) ?? ''}</span>
           </div>
         </div>
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
+        <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
           <div className="flex items-center justify-between mb-4">
-            <div><h3 className="text-sm font-semibold text-slate-200">New posts</h3><p className="text-xs text-slate-500">Last 14 days</p></div>
-            <div className="text-right"><p className="text-xl font-bold text-slate-100">{overview.newPostsThisWeek}</p><p className="text-xs text-slate-600">this week</p></div>
+            <div><h3 className="text-sm font-semibold text-[#C8DCC9]">New posts</h3><p className="text-xs text-[#5A7A5E]">Last 14 days</p></div>
+            <div className="text-right"><p className="text-xl font-bold text-[#E2EBE4]">{overview.newPostsThisWeek}</p><p className="text-xs text-[#3A6A3E]">this week</p></div>
           </div>
           <Sparkline data={postTrend.map((d) => d.count)} color="#8b5cf6" width={340} height={60}/>
-          <div className="flex items-center justify-between mt-2 text-[10px] text-slate-700">
+          <div className="flex items-center justify-between mt-2 text-[10px] text-[#2A4A2E]">
             <span>{postTrend[0]?.date?.slice(5) ?? ''}</span>
             <span>{postTrend[postTrend.length - 1]?.date?.slice(5) ?? ''}</span>
           </div>
@@ -70,41 +70,41 @@ export default function AdminPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4">Top skills</h3>
+        <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
+          <h3 className="text-sm font-semibold text-[#C8DCC9] mb-4">Top skills</h3>
           <HorizontalBarChart data={topSkills.map((s) => ({ label: s.skill, count: s.count }))} color="#6366f1"/>
         </div>
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4">Top tech stack</h3>
+        <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
+          <h3 className="text-sm font-semibold text-[#C8DCC9] mb-4">Top tech stack</h3>
           <HorizontalBarChart data={topTech.map((t) => ({ label: t.tech, count: t.count }))} color="#06b6d4"/>
         </div>
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4">Most active users</h3>
+        <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
+          <h3 className="text-sm font-semibold text-[#C8DCC9] mb-4">Most active users</h3>
           <div className="space-y-3">
             {topPosters.map((u, i) => (
               <div key={u.username} className="flex items-center gap-3">
-                <span className="text-xs text-slate-600 w-4">{i + 1}</span>
+                <span className="text-xs text-[#3A6A3E] w-4">{i + 1}</span>
                 <Avatar src={u.avatar} name={u.name} size="sm"/>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-slate-300 truncate">{u.name}</p>
-                  <p className="text-[10px] text-slate-600">@{u.username}</p>
+                  <p className="text-xs font-medium text-[#9EB5A0] truncate">{u.name}</p>
+                  <p className="text-[10px] text-[#3A6A3E]">@{u.username}</p>
                 </div>
-                <span className="text-xs text-slate-500">{u.stats.postsCount} posts</span>
+                <span className="text-xs text-[#5A7A5E]">{u.stats.postsCount} posts</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4">
+      <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl p-5">
+        <h3 className="text-sm font-semibold text-[#C8DCC9] mb-4">
           Open to work — {compactNumber(overview.openToWorkUsers)} developers
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {availabilityDist.map(({ availability, count }) => (
-            <div key={availability} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] text-center">
-              <p className="text-lg font-bold text-slate-100">{count}</p>
-              <p className="text-xs text-slate-600 mt-0.5 capitalize">{availability?.replace(/-/g, ' ')}</p>
+            <div key={availability} className="p-3 rounded-xl bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)] text-center">
+              <p className="text-lg font-bold text-[#E2EBE4]">{count}</p>
+              <p className="text-xs text-[#3A6A3E] mt-0.5 capitalize">{availability?.replace(/-/g, ' ')}</p>
             </div>
           ))}
         </div>

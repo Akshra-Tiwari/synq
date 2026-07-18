@@ -61,16 +61,16 @@ export default function ConversationPage({ params }: PageProps) {
   return (
     <div className="flex h-[calc(100vh-64px)] -mx-6 -my-8">
       {/* Left: conversation list */}
-      <div className="w-80 shrink-0 border-r border-white/[0.05] bg-[#0d0d12] hidden md:block">
+      <div className="w-80 shrink-0 border-r border-[rgba(1,121,111,0.1)] bg-[#0d0d12] hidden md:block">
         <ConversationList activeId={conversationId} />
       </div>
 
       {/* Right: chat window */}
       <div className="flex-1 flex flex-col bg-[#0a0a0f] min-w-0">
         {/* Header */}
-        <div className="flex items-center gap-3 px-5 py-3.5 border-b border-white/[0.05] bg-[#0d0d12] shrink-0">
+        <div className="flex items-center gap-3 px-5 py-3.5 border-b border-[rgba(1,121,111,0.1)] bg-[#0d0d12] shrink-0">
           {/* Mobile back */}
-          <Link href="/messages" className="md:hidden text-slate-500 hover:text-slate-300 transition-colors mr-1">
+          <Link href="/messages" className="md:hidden text-[#5A7A5E] hover:text-[#9EB5A0] transition-colors mr-1">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M11 4L7 9l4 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -80,8 +80,8 @@ export default function ConversationPage({ params }: PageProps) {
             <Link href={`/${peer.username}`} className="flex items-center gap-3 hover:opacity-90 transition-opacity">
               <Avatar src={peer.avatar} name={peer.name} size="sm" online={isOnline} />
               <div>
-                <p className="text-sm font-semibold text-slate-200">{peer.name}</p>
-                <p className="text-xs text-slate-500">
+                <p className="text-sm font-semibold text-[#C8DCC9]">{peer.name}</p>
+                <p className="text-xs text-[#5A7A5E]">
                   {isOnline ? (
                     <span className="text-emerald-400">Online</span>
                   ) : (
@@ -92,10 +92,10 @@ export default function ConversationPage({ params }: PageProps) {
             </Link>
           ) : (
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/[0.05] animate-pulse" />
+              <div className="w-8 h-8 rounded-full bg-[rgba(1,121,111,0.08)] animate-pulse" />
               <div className="space-y-1">
-                <div className="h-3 w-24 bg-white/[0.05] rounded animate-pulse" />
-                <div className="h-2.5 w-16 bg-white/[0.04] rounded animate-pulse" />
+                <div className="h-3 w-24 bg-[rgba(1,121,111,0.08)] rounded animate-pulse" />
+                <div className="h-2.5 w-16 bg-[rgba(1,121,111,0.06)] rounded animate-pulse" />
               </div>
             </div>
           )}
@@ -115,10 +115,10 @@ export default function ConversationPage({ params }: PageProps) {
           {messages.length === 0 && !hasMore && (
             <div className="flex flex-col items-center justify-center h-full py-16 text-center">
               {peer && <Avatar src={peer.avatar} name={peer.name} size="xl" className="mb-4" />}
-              <p className="text-sm font-medium text-slate-400">
+              <p className="text-sm font-medium text-[#7A9A7E]">
                 {peer ? `Start a conversation with ${peer.name}` : 'No messages yet'}
               </p>
-              <p className="text-xs text-slate-600 mt-1">Say hello 👋</p>
+              <p className="text-xs text-[#3A6A3E] mt-1">Say hello 👋</p>
             </div>
           )}
 

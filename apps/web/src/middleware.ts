@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// Paths that don't require authentication
 const PUBLIC_PATHS = [
   '/',
   '/login',
@@ -10,6 +11,9 @@ const PUBLIC_PATHS = [
   '/verify-email',
   '/auth/google',
   '/auth/google/success',
+  '/api-test',
+  '/terms',
+  '/privacy',
 ];
 
 const PUBLIC_PREFIXES = [
@@ -17,12 +21,14 @@ const PUBLIC_PREFIXES = [
   '/favicon',
   '/api',
   '/static',
+  '/icon',
+  '/images',
 ];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow public paths and static assets
+  // Always allow public paths
   if (
     PUBLIC_PATHS.some(p => pathname === p || pathname.startsWith(p + '/')) ||
     PUBLIC_PREFIXES.some(p => pathname.startsWith(p))
@@ -30,16 +36,19 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Check for auth cookie (set by server on login/refresh)
+  // Check refreshToken cookie (works in same-domain / local dev)
   const refreshToken = request.cookies.get('refreshToken')?.value;
 
-  // Also check Authorization header (for API routes)
-  const authHeader = request.headers.get('authorization');
+  // In production (cross-domain), cookies won't be present
+  // Let the client-side AuthProvider handle auth redirects instead
+  // Only redirect if we're definitely not authenticated (no cookie)
+  // and only in same-domain scenarios
+  const host = request.headers.get('host') || '';
+  const isLocalDev = host.includes('localhost');
 
-  // If no session indicator at all, redirect to login
-  // We use refreshToken cookie as the auth indicator since
-  // localStorage is not accessible in middleware
-  if (!refreshToken && !authHeader) {
+  // Only enforce middleware auth check on localhost
+  // In production, let client-side handle it (AuthProvider)
+  if (isLocalDev && !refreshToken) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);

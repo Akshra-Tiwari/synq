@@ -15,7 +15,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const token = localStorage.getItem(TOKEN_KEY);
 
       if (!token) {
-        // Try cookie-based refresh (user closed tab with valid refresh cookie)
+        // Try cookie-based refresh (same-domain only)
         try {
           const res = await refreshToken();
           const newToken = res.data.accessToken;

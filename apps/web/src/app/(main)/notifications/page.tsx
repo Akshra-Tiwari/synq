@@ -43,15 +43,15 @@ export default function NotificationsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100 tracking-tight">Notifications</h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <h1 className="text-2xl font-semibold text-[#E2EBE4] tracking-tight">Notifications</h1>
+          <p className="text-sm text-[#5A7A5E] mt-0.5">
             {total > 0 ? `${total} notification${total !== 1 ? 's' : ''}` : 'All caught up'}
           </p>
         </div>
         {unreadCount > 0 && (
           <button
             onClick={markAllRead}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 hover:bg-white/[0.07] transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-white/[0.07] transition-all"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7l3.5 3.5L12 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -62,7 +62,7 @@ export default function NotificationsPage() {
       </div>
 
       {/* Filter tabs */}
-      <div className="flex gap-1 p-1 bg-white/[0.03] border border-white/[0.05] rounded-xl w-fit">
+      <div className="flex gap-1 p-1 bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)] rounded-xl w-fit">
         {(['all', 'unread'] as Filter[]).map((f) => (
           <button
             key={f}
@@ -70,8 +70,8 @@ export default function NotificationsPage() {
             className={cn(
               'flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium capitalize transition-all',
               filter === f
-                ? 'bg-white/[0.08] text-slate-200'
-                : 'text-slate-500 hover:text-slate-300',
+                ? 'bg-white/[0.08] text-[#C8DCC9]'
+                : 'text-[#5A7A5E] hover:text-[#9EB5A0]',
             )}
           >
             {f}
@@ -79,8 +79,8 @@ export default function NotificationsPage() {
               <span className={cn(
                 'text-xs px-1.5 py-0.5 rounded-full',
                 filter === 'unread'
-                  ? 'bg-indigo-500/25 text-indigo-300'
-                  : 'bg-white/[0.06] text-slate-600',
+                  ? 'bg-[#01796F]/25 text-teal-300'
+                  : 'bg-[rgba(1,121,111,0.08)] text-[#3A6A3E]',
               )}>
                 {unreadCount}
               </span>
@@ -108,12 +108,12 @@ export default function NotificationsPage() {
           }
         />
       ) : (
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden divide-y divide-white/[0.04]">
+        <div className="bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.12)] rounded-2xl overflow-hidden divide-y divide-white/[0.04]">
           {groups.map(({ label, items }) => (
             <div key={label}>
               {/* Date group header */}
-              <div className="px-4 py-2 bg-white/[0.02]">
-                <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">{label}</p>
+              <div className="px-4 py-2 bg-[rgba(23,37,24,0.7)]">
+                <p className="text-xs font-semibold text-[#3A6A3E] uppercase tracking-wider">{label}</p>
               </div>
               <div className="divide-y divide-white/[0.03]">
                 {items.map((n) => (
@@ -133,7 +133,7 @@ export default function NotificationsPage() {
             <div className="p-4 flex justify-center">
               <button
                 onClick={loadMore}
-                className="px-5 py-2 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 hover:bg-white/[0.07] transition-all"
+                className="px-5 py-2 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] hover:bg-white/[0.07] transition-all"
               >
                 Load more
               </button>

@@ -76,8 +76,8 @@ function ExploreContent() {
     <div className="max-w-5xl mx-auto space-y-8">
       {/* ── Header ── */}
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100 tracking-tight">Explore Developers</h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <h1 className="text-2xl font-semibold text-[#E2EBE4] tracking-tight">Explore Developers</h1>
+        <p className="text-sm text-[#5A7A5E] mt-1">
           {total > 0 ? `${total} developers on Synq` : 'Discover developers by skill, location, and more'}
         </p>
       </div>
@@ -85,7 +85,7 @@ function ExploreContent() {
       {/* ── Search + filters ── */}
       <div className="space-y-3">
         <form onSubmit={handleSearch} className="relative">
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600" width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-[#3A6A3E]" width="15" height="15" viewBox="0 0 15 15" fill="none">
             <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.3"/>
             <path d="M10.5 10.5l3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
           </svg>
@@ -93,7 +93,7 @@ function ExploreContent() {
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             placeholder="Search by name, username, skills, bio…"
-            className="w-full h-11 bg-white/[0.04] border border-white/[0.07] rounded-xl pl-11 pr-4 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all"
+            className="w-full h-11 bg-[rgba(1,121,111,0.06)] border border-white/[0.07] rounded-xl pl-11 pr-4 text-sm text-[#C8DCC9] placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all"
           />
         </form>
 
@@ -106,8 +106,8 @@ function ExploreContent() {
               className={cn(
                 'px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
                 skillFilter === skill
-                  ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40'
-                  : 'bg-white/[0.03] text-slate-500 border-white/[0.06] hover:text-slate-300 hover:border-white/[0.12]',
+                  ? 'bg-[#01796F]/20 text-teal-300 border-indigo-500/40'
+                  : 'bg-[rgba(23,37,24,0.8)] text-[#5A7A5E] border-[rgba(1,121,111,0.12)] hover:text-[#9EB5A0] hover:border-white/[0.12]',
               )}
             >
               {skill}
@@ -120,7 +120,7 @@ function ExploreContent() {
               'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
               openToWork
                 ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                : 'bg-white/[0.03] text-slate-500 border-white/[0.06] hover:text-slate-300',
+                : 'bg-[rgba(23,37,24,0.8)] text-[#5A7A5E] border-[rgba(1,121,111,0.12)] hover:text-[#9EB5A0]',
             )}
           >
             <span className={cn('w-1.5 h-1.5 rounded-full', openToWork ? 'bg-emerald-400' : 'bg-slate-600')} />
@@ -130,7 +130,7 @@ function ExploreContent() {
           {hasFilters && (
             <button
               onClick={() => { setQuery(''); setInputVal(''); setSkillFilter(''); setOpenToWork(false); }}
-              className="px-3 py-1.5 rounded-full text-xs text-slate-600 hover:text-slate-400 transition-colors"
+              className="px-3 py-1.5 rounded-full text-xs text-[#3A6A3E] hover:text-[#7A9A7E] transition-colors"
             >
               Clear all ✕
             </button>
@@ -141,7 +141,7 @@ function ExploreContent() {
       {/* ── Suggestions (when no active search) ── */}
       {!hasFilters && suggestions.length > 0 && (
         <div>
-          <h2 className="text-sm font-semibold text-slate-400 mb-4">People you may know</h2>
+          <h2 className="text-sm font-semibold text-[#7A9A7E] mb-4">People you may know</h2>
           {sugLoading ? (
             <div className="flex justify-center py-8"><Spinner /></div>
           ) : (
@@ -161,19 +161,19 @@ function ExploreContent() {
       {/* ── Results grid ── */}
       <div>
         {hasFilters && (
-          <h2 className="text-sm font-semibold text-slate-400 mb-4">
+          <h2 className="text-sm font-semibold text-[#7A9A7E] mb-4">
             {loading ? 'Searching…' : `${total} result${total !== 1 ? 's' : ''}`}
           </h2>
         )}
 
         {!hasFilters && (
-          <h2 className="text-sm font-semibold text-slate-400 mb-4">All developers</h2>
+          <h2 className="text-sm font-semibold text-[#7A9A7E] mb-4">All developers</h2>
         )}
 
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-52 bg-white/[0.02] border border-white/[0.05] rounded-2xl animate-pulse" />
+              <div key={i} className="h-52 bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.1)] rounded-2xl animate-pulse" />
             ))}
           </div>
         ) : users.length === 0 ? (
@@ -206,7 +206,7 @@ function ExploreContent() {
                 <button
                   disabled={page <= 1}
                   onClick={() => fetchUsers(page - 1)}
-                  className="h-9 px-4 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 disabled:opacity-30 transition-all"
+                  className="h-9 px-4 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] disabled:opacity-30 transition-all"
                 >
                   ← Prev
                 </button>
@@ -217,8 +217,8 @@ function ExploreContent() {
                     className={cn(
                       'h-9 w-9 rounded-xl text-sm font-medium transition-all',
                       p === page
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-white/[0.04] border border-white/[0.07] text-slate-400 hover:text-slate-200',
+                        ? 'bg-[#01796F] text-white'
+                        : 'bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-[#7A9A7E] hover:text-[#C8DCC9]',
                     )}
                   >
                     {p}
@@ -227,7 +227,7 @@ function ExploreContent() {
                 <button
                   disabled={page >= totalPages}
                   onClick={() => fetchUsers(page + 1)}
-                  className="h-9 px-4 rounded-xl bg-white/[0.04] border border-white/[0.07] text-sm text-slate-400 hover:text-slate-200 disabled:opacity-30 transition-all"
+                  className="h-9 px-4 rounded-xl bg-[rgba(1,121,111,0.06)] border border-white/[0.07] text-sm text-[#7A9A7E] hover:text-[#C8DCC9] disabled:opacity-30 transition-all"
                 >
                   Next →
                 </button>

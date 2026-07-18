@@ -112,14 +112,14 @@ export default function ProfilePage({ params }: PageProps) {
 
       {/* Profile completion tip */}
       {isOwn && (profile.profileCompletion ?? 0) < 80 && (
-        <div className="flex items-start gap-3 px-5 py-4 rounded-xl bg-indigo-500/[0.08] border border-indigo-500/20">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-indigo-400 mt-0.5 shrink-0">
+        <div className="flex items-start gap-3 px-5 py-4 rounded-xl bg-[#01796F]/[0.08] border border-indigo-500/20">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-teal-400 mt-0.5 shrink-0">
             <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.3"/>
             <path d="M8 5v3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
             <circle cx="8" cy="11" r="0.7" fill="currentColor"/>
           </svg>
           <div>
-            <p className="text-sm text-indigo-300 font-medium">Profile {profile.profileCompletion ?? 0}% complete</p>
+            <p className="text-sm text-teal-300 font-medium">Profile {profile.profileCompletion ?? 0}% complete</p>
             <p className="text-xs text-indigo-500 mt-0.5">
               {!profile.bio ? 'Add a bio, ' : ''}
               {(profile.skills?.length ?? 0) < 3 ? 'add 3+ skills, ' : ''}
@@ -131,7 +131,7 @@ export default function ProfilePage({ params }: PageProps) {
       )}
 
       {/* Tab bar */}
-      <div className="flex gap-1 p-1 bg-white/[0.02] border border-white/[0.05] rounded-xl">
+      <div className="flex gap-1 p-1 bg-[rgba(23,37,24,0.7)] border border-[rgba(1,121,111,0.1)] rounded-xl">
         {TABS.map(({ id, label, count }) => (
           <button
             key={id}
@@ -139,15 +139,15 @@ export default function ProfilePage({ params }: PageProps) {
             className={cn(
               'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-sm font-medium transition-all',
               tab === id
-                ? 'bg-white/[0.07] text-slate-200'
-                : 'text-slate-500 hover:text-slate-300 hover:bg-white/[0.03]',
+                ? 'bg-white/[0.07] text-[#C8DCC9]'
+                : 'text-[#5A7A5E] hover:text-[#9EB5A0] hover:bg-[rgba(23,37,24,0.8)]',
             )}
           >
             {label}
             {count !== undefined && count > 0 && (
               <span className={cn(
                 'text-xs px-1.5 py-0.5 rounded-full',
-                tab === id ? 'bg-indigo-500/20 text-indigo-300' : 'bg-white/[0.05] text-slate-600',
+                tab === id ? 'bg-[#01796F]/20 text-teal-300' : 'bg-[rgba(1,121,111,0.08)] text-[#3A6A3E]',
               )}>
                 {count}
               </span>
@@ -182,7 +182,7 @@ export default function ProfilePage({ params }: PageProps) {
               {hasMore && (
                 <button
                   onClick={loadMorePosts}
-                  className="w-full py-3 rounded-xl border border-white/[0.06] text-sm text-slate-500 hover:text-slate-300 hover:bg-white/[0.03] transition-all"
+                  className="w-full py-3 rounded-xl border border-[rgba(1,121,111,0.12)] text-sm text-[#5A7A5E] hover:text-[#9EB5A0] hover:bg-[rgba(23,37,24,0.8)] transition-all"
                 >
                   Load more posts
                 </button>
@@ -229,9 +229,9 @@ export default function ProfilePage({ params }: PageProps) {
                 { label: 'Projects',    value: profile.stats.projectsCount },
                 { label: 'Views',       value: profile.stats.profileViews },
               ].map(({ label, value }) => (
-                <div key={label} className="text-center p-3 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                  <p className="text-lg font-semibold text-slate-100">{compactNumber(value)}</p>
-                  <p className="text-xs text-slate-600 mt-0.5">{label}</p>
+                <div key={label} className="text-center p-3 rounded-xl bg-[rgba(23,37,24,0.8)] border border-[rgba(1,121,111,0.1)]">
+                  <p className="text-lg font-semibold text-[#E2EBE4]">{compactNumber(value)}</p>
+                  <p className="text-xs text-[#3A6A3E] mt-0.5">{label}</p>
                 </div>
               ))}
             </div>
