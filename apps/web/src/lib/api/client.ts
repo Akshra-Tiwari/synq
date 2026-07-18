@@ -2,16 +2,20 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 const TOKEN_KEY = 'synq_access_token';
 
-// Fallback to production URL if env var not set
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL
-  || (typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-      ? 'https://synq-api-z6kj.onrender.com/api/v1'
-      : 'http://localhost:5000/api/v1');
+// Detect if running in production (not localhost)
+const isProduction = typeof window !== 'undefined'
+  && !window.location.hostname.includes('localhost')
+  && !window.location.hostname.includes('127.0.0.1');
+
+// Always use production URL when not on localhost
+const BASE_URL = isProduction
+  ? 'https://synq-api-z6kj.onrender.com/api/v1'
+  : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1');
 
 const apiClient = axios.create({
   baseURL:         BASE_URL,
   withCredentials: true,
-  timeout:         30000, // 30s for Render cold starts
+  timeout:         60000, // 60s for Render cold starts
   headers:         { 'Content-Type': 'application/json' },
 });
 

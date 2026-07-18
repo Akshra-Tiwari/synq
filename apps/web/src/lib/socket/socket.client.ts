@@ -67,10 +67,11 @@ export function createSocket(
 ): Socket<ServerToClientEvents, ClientToServerEvents> {
   if (socketInstance?.connected) return socketInstance;
 
-  const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL
-    || (typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-        ? 'https://synq-api-z6kj.onrender.com'
-        : 'http://localhost:5000');
+  const SOCKET_URL = (typeof window !== 'undefined'
+    && !window.location.hostname.includes('localhost')
+    && !window.location.hostname.includes('127.0.0.1'))
+    ? 'https://synq-api-z6kj.onrender.com'
+    : (process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000');
 
   socketInstance = io(SOCKET_URL, {
     auth:               { token },
