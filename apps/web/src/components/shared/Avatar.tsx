@@ -4,14 +4,14 @@ import { cn } from '../../lib/utils/cn';
 interface AvatarProps {
   src?:      string;
   name:      string;
-  size?:     'xs'|'sm'|'md'|'lg'|'xl';
+  size?:     'xs'|'sm'|'md'|'lg'|'xl'|'2xl';
   online?:   boolean;
   className?: string;
   style?:    React.CSSProperties;
 }
 
-const SIZES = { xs:24, sm:32, md:40, lg:52, xl:72 };
-const TEXT  = { xs:'text-[9px]', sm:'text-xs', md:'text-sm', lg:'text-base', xl:'text-xl' };
+const SIZES = { xs:24, sm:32, md:40, lg:52, xl:72, '2xl':96 };
+const TEXT  = { xs:'text-[9px]', sm:'text-xs', md:'text-sm', lg:'text-base', xl:'text-xl', '2xl':'text-2xl' };
 
 function initials(name: string) {
   return name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();

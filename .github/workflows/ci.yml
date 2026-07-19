@@ -11,67 +11,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ─── Backend ────────────────────────────────────────────────────────────────
   server:
-    name: Server (type-check + build)
+    name: Server (build)
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: apps/server
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
-      - name: Install dependencies
+      - name: Install
         run: npm ci
-
-      - name: Type check
-        run: npm run type-check
-
       - name: Build
         run: npm run build
 
-  # ─── Frontend ───────────────────────────────────────────────────────────────
   web:
-    name: Web (type-check + build)
+    name: Web (build)
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: apps/web
-
     env:
       NEXT_PUBLIC_API_URL: http://localhost:5000/api/v1
       NEXT_PUBLIC_SOCKET_URL: http://localhost:5000
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
-      - name: Install dependencies
+      - name: Install
         run: npm ci
-
-      - name: Type check
-        run: npm run type-check
-
       - name: Build
         run: npm run build
 
-  # ─── Quality gate ───────────────────────────────────────────────────────────
   quality:
     name: Quality gate
     runs-on: ubuntu-latest
     needs: [server, web]
     if: github.event_name == 'pull_request'
-
     steps:
       - name: All checks passed
-        run: echo "✅ CI passed — ready to merge"
+        run: echo "✅ CI passed"

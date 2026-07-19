@@ -17,6 +17,8 @@ export interface User {
   linkedinUrl?:      string;
   twitterUrl?:       string;
   portfolioUrl?:     string;
+  website?:          string;
+  pronouns?:         string;
   openToWork:        boolean;
   availability:      string;
   yearsOfExperience?: number;

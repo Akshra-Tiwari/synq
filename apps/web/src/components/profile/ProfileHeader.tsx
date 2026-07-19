@@ -130,7 +130,7 @@ export function ProfileHeader({
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="text-xl font-semibold text-slate-100">{user.name}</h1>
             {user.isVerified && (
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" title="Verified">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-label="Verified">
                 <circle cx="8" cy="8" r="7" fill="#6366f1" />
                 <path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -155,14 +155,14 @@ export function ProfileHeader({
               {user.location}
             </span>
           )}
-          {user.website && (
-            <a href={user.website} target="_blank" rel="noopener noreferrer"
+          {user.portfolioUrl && (
+            <a href={user.portfolioUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
                 <path d="M6 1C4.5 3 4.5 9 6 11M6 1C7.5 3 7.5 9 6 11M1 6h10" stroke="currentColor" strokeWidth="1.2" />
               </svg>
-              {user.website.replace(/^https?:\/\//, '')}
+              {user.portfolioUrl.replace(/^https?:\/\//, '')}
             </a>
           )}
           {user.githubUrl && (

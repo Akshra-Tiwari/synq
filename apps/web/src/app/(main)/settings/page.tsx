@@ -170,7 +170,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className={labelCls}>Website</label>
-                  <input {...register('website')} placeholder="https://yoursite.com" className={inputCls} />
+                  <input {...register('portfolioUrl')} placeholder="https://yoursite.com" className={inputCls} />
                 </div>
               </div>
             </div>

@@ -33,7 +33,7 @@ export function NotificationBell() {
         </svg>
         {unreadCount > 0 && (
           <span className="absolute top-1 right-1 min-w-[15px] h-[15px] px-0.5 rounded-full text-white text-[9px] font-bold flex items-center justify-center ring-2"
-            style={{ background:'linear-gradient(135deg,#01796F,#00c4b4)', ringColor:'#08120A' }}>
+            style={{ background:'linear-gradient(135deg,#01796F,#00c4b4)', }}>
             {unreadCount > 99 ? '99+' : unreadCount}
           </span>
         )}
@@ -61,7 +61,7 @@ export function NotificationBell() {
             )}
           </div>
 
-          <div className="max-h-80 overflow-y-auto divide-y" style={{ divideColor:'rgba(109,129,150,0.06)' }}>
+          <div className="max-h-80 overflow-y-auto divide-y" >
             {notifications.slice(0, 5).length === 0 ? (
               <div className="py-10 text-center">
                 <p className="text-sm" style={{ color:'#50606E' }}>No notifications yet</p>
